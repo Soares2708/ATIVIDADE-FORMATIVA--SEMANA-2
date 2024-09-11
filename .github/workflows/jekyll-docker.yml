@@ -1,4 +1,4 @@
-name: Front-End CI
+name: Node.js CI
 
 on:
   push:
@@ -12,9 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
     - name: Install Dependencies
       run: npm install
-    - name: Run Lint
-      run: npm run lint
-    - name: Validate HTML
-      run: npm run validate-html
+    - name: Run Tests
+      run: npm test
